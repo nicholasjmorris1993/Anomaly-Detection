@@ -5,7 +5,7 @@ import plotly.express as px
 from plotly.offline import plot
 import sys
 sys.path.append("/home/nick/Anomaly-Detection/src")
-from online import streaming
+from offline import batching
 
 
 def scatter(df, x, y, color=None, title="Scatter Plot", font_size=None):
@@ -18,7 +18,7 @@ data = pd.read_csv("/home/nick/Anomaly-Detection/test/LungCap.csv")
 data = data.sample(frac=1, random_state=0).reset_index(drop=True)  # shuffle the data
 data = data.drop(columns=["Gender female", "Smoke no"])  # remove extra columns
 
-model = streaming(
+model = batching(
     df=data, 
     test_frac=0.5,
 )
