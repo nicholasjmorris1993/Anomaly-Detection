@@ -36,7 +36,7 @@ n_comp = 2 # number of principal components
 component = PCA(n_components=n_comp, random_state=42)
 component.fit(test)
 
-# compute components for all the data, add cluster labels and train/test labels
+# compute components for all the data
 components = pd.DataFrame(
     component.transform(test), 
     columns=[f"PC{str(i + 1)}" for i in range(n_comp)],
