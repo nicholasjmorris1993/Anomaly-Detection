@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from sklearn.neighbors import LocalOutlierFactor
+from sklearn.ensemble import IsolationForest
 
 
 def batching(df, test_frac):
@@ -18,7 +18,7 @@ class Batching:
         train = self.data.copy().head(int(len(self.data)*(1 - self.test_frac)))
 
         # train a model to detect outliers
-        self.model = LocalOutlierFactor(n_neighbors=20, leaf_size=30, novelty=True)
+        self.model = IsolationForest(n_jobs=-1, random_state=0)
         self.model.fit(train)
 
     def predict(self):
